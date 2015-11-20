@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3927716536">
+    <data-source source="LOCAL" name="Derby (Embedded) - memory:auction" uuid="2e24f4f9-5890-4772-baec-468069c13060">
+      <driver-ref>derby.embedded</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.apache.derby.jdbc.EmbeddedDriver</jdbc-driver>
+      <jdbc-url>jdbc:derby:memory:auction;create=true</jdbc-url>
+    </data-source>
+  </component>
+</project>
