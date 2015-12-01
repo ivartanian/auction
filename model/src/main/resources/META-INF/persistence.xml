@@ -5,19 +5,19 @@
    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
       http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
 
-   <persistence-unit name="auction" transaction-type="JTA">
-      <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-      <jta-data-source>jdbc/__default</jta-data-source>
-      <properties>
-         <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
-         <!--<property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>-->
-         <!--<property name="javax.persistence.schema-generation.scripts.create-target" value="create.sql"/>-->
-         <!--<property name="javax.persistence.schema-generation.scripts.drop-target" value="drop.sql"/>-->
-         <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-         <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:auction;create=true"/>
-         <!--<property name="javax.persistence.sql-load-script-source" value="insert.sql"/>-->
-         <property name="eclipselink.logging.level" value="INFO"/>
-      </properties>
-   </persistence-unit>
+   <!--<persistence-unit name="auction" transaction-type="JTA">-->
+      <!--<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
+      <!--<jta-data-source>jdbc/__default</jta-data-source>-->
+      <!--<properties>-->
+         <!--<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>-->
+         <!--&lt;!&ndash;<property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>&ndash;&gt;-->
+         <!--&lt;!&ndash;<property name="javax.persistence.schema-generation.scripts.create-target" value="create.sql"/>&ndash;&gt;-->
+         <!--&lt;!&ndash;<property name="javax.persistence.schema-generation.scripts.drop-target" value="drop.sql"/>&ndash;&gt;-->
+         <!--<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>-->
+         <!--<property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:auction;create=true"/>-->
+         <!--&lt;!&ndash;<property name="javax.persistence.sql-load-script-source" value="insert.sql"/>&ndash;&gt;-->
+         <!--<property name="eclipselink.logging.level" value="INFO"/>-->
+      <!--</properties>-->
+   <!--</persistence-unit>-->
 
 </persistence>
