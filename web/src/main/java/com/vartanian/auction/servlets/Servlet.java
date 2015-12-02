@@ -2,6 +2,7 @@ package com.vartanian.auction.servlets;
 
 import com.vartanian.auction.model.BeanWithoutInterface;
 import com.vartanian.auction.model.FacadeLocal;
+import com.vartanian.auction.model.StateFull;
 
 import javax.annotation.Resource;
 import javax.ejb.EJB;
@@ -28,8 +29,11 @@ public class Servlet extends HttpServlet {
     @EJB
     private BeanWithoutInterface beanWithoutInterface;
 
-    @Resource(mappedName = "jdbc/auction")
-    private DataSource dataSource;
+//    @Resource(mappedName = "jdbc/auction")
+//    private DataSource dataSource;
+
+    @EJB
+    private StateFull stateFull;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
@@ -37,10 +41,11 @@ public class Servlet extends HttpServlet {
         writer.print("<html>");
         writer.print("<hr/>");
 
-        writer.print(facadeLocal + " info() = " + facadeLocal.info());
-        writer.print("<hr/>" + dataSource);
-        writer.print("<hr/>" + beanWithoutInterface.info());
-        writer.print("<hr/>" + beanWithoutInterface.addItem("7"));
+//        writer.print(facadeLocal + " info() = " + facadeLocal.info());
+//        writer.print("<hr/>" + dataSource);
+//        writer.print("<hr/>" + beanWithoutInterface.info());
+//        writer.print("<hr/>" + beanWithoutInterface.addItem("7"));
+        writer.print("<hr/>" + stateFull.info());
         writer.print("</html>");
         writer.close();
     }
