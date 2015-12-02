@@ -1,12 +1,10 @@
 package com.vartanian.auction.servlets;
 
-import com.vartanian.auction.model.BeanWithoutInterface;
 import com.vartanian.auction.model.FacadeLocal;
+import com.vartanian.auction.model.Person;
 
 import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.ejb.SessionContext;
-import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,21 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by super on 12/1/15.
  */
-@WebServlet(name = "Servlet", urlPatterns = "/view")
-public class Servlet extends HttpServlet {
+@WebServlet(name = "ServletAsynch", urlPatterns = "/asynch")
+public class ServletAsynch extends HttpServlet {
 
     @EJB
     private FacadeLocal facadeLocal;
-
-    @EJB
-    private BeanWithoutInterface beanWithoutInterface;
-
-    @Resource(mappedName = "jdbc/auction")
-    private DataSource dataSource;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
@@ -37,10 +33,16 @@ public class Servlet extends HttpServlet {
         writer.print("<html>");
         writer.print("<hr/>");
 
-        writer.print(facadeLocal + " info() = " + facadeLocal.info());
-        writer.print("<hr/>" + dataSource);
-        writer.print("<hr/>" + beanWithoutInterface.info());
-        writer.print("<hr/>" + beanWithoutInterface.addItem("7"));
+//        facadeLocal.invokeAsynch();
+        Future<Person> personFuture = facadeLocal.invokeAsynchWithFuture();
+        Person person = null;
+        try {
+            person = personFuture.get(6, TimeUnit.SECONDS);
+        } catch (InterruptedException | ExecutionException | TimeoutException e) {
+            e.printStackTrace();
+        }
+        System.out.println("------------------- end servlet + person = " + person);
+        writer.print(person);
         writer.print("</html>");
         writer.close();
     }
