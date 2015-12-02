@@ -6,9 +6,8 @@ import javax.ejb.Stateless;
 /**
  * Created by super on 12/1/15.
  */
-@Stateless(mappedName = "F1")
-@LocalBean
-public class Facade implements FacadeLocal, FacadeRemote{
+@Stateless
+public class Facade implements FacadeLocal{
 
     private long id;
 
@@ -19,6 +18,11 @@ public class Facade implements FacadeLocal, FacadeRemote{
 
     @Override
     public String info() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("info() id = " + id);
         return "Hello";
     }
