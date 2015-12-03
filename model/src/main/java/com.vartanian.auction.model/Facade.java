@@ -1,7 +1,14 @@
 package com.vartanian.auction.model;
 
+import com.vartanian.auction.model.utils.TxStatus;
+
 import javax.annotation.Resource;
 import javax.ejb.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Status;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 import java.util.Date;
 import java.util.concurrent.Future;
 
@@ -9,12 +16,18 @@ import java.util.concurrent.Future;
  * Created by super on 12/1/15.
  */
 @Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER)
 public class Facade implements FacadeLocal{
 
     private TimerHandle timerHandle;
 
+    @PersistenceContext(unitName = "auction")
+    private EntityManager em;
+
     @Resource
     private SessionContext sessionContext;
+//    @Resource
+//    private UserTransaction userTransaction;
 
     private long id;
 
@@ -25,8 +38,26 @@ public class Facade implements FacadeLocal{
 
     @Override
     public String info() {
-        System.out.println("info() id = " + id);
-        return "Hello; sess = " + sessionContext + ";;;";
+//        System.out.println("info() id = " + id);
+
+        System.out.println(TxStatus.getStatus(sessionContext.getUserTransaction()));
+
+        int i = executeSQL("CREATE TABLE test (id INTEGER PRIMARY KEY)");
+
+        System.out.println(TxStatus.getStatus(sessionContext.getUserTransaction()));
+
+        return String.valueOf(i);
+    }
+
+    public int executeSQL(String sql) {
+
+        System.out.println(TxStatus.getStatus(sessionContext.getUserTransaction()));
+
+        int i = em.createNativeQuery(sql).executeUpdate();
+
+        System.out.println(TxStatus.getStatus(sessionContext.getUserTransaction()));
+
+        return i;
     }
 
     @Override

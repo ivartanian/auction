@@ -45,7 +45,8 @@ public class Servlet extends HttpServlet {
 //        writer.print("<hr/>" + dataSource);
 //        writer.print("<hr/>" + beanWithoutInterface.info());
 //        writer.print("<hr/>" + beanWithoutInterface.addItem("7"));
-        writer.print("<hr/>" + stateFull.info());
+//        writer.print("<hr/>" + stateFull.info());
+        writer.print("<hr/>" + facadeLocal.info());
         writer.print("</html>");
         writer.close();
     }
