@@ -40,11 +40,11 @@ public class Facade implements FacadeLocal{
     public String info() {
 //        System.out.println("info() id = " + id);
 
-        System.out.println(TxStatus.getStatus(sessionContext.getUserTransaction()));
+//        System.out.println(TxStatus.getStatus(sessionContext.getUserTransaction()));
 
         int i = executeSQL("CREATE TABLE test (id INTEGER PRIMARY KEY)");
 
-        System.out.println(TxStatus.getStatus(sessionContext.getUserTransaction()));
+//        System.out.println(TxStatus.getStatus(sessionContext.getUserTransaction()));
 
         return String.valueOf(i);
     }
@@ -97,6 +97,19 @@ public class Facade implements FacadeLocal{
         }
         System.out.println("--------------------made invokeAsynchWithFuture()");
         return objectAsyncResult;
+    }
+
+    @Override
+    public void createPerson(Person person) {
+        em.persist(person);
+    }
+
+    @Override
+    public void updatePerson(Long id, String name, String info) {
+        Person person = em.find(Person.class, id);
+        person.setInfo(info);
+        person.setName(name);
+        em.merge(person);
     }
 
     @Timeout

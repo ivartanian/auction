@@ -21,7 +21,8 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="EclipseLink" />
         <datasource-mapping>
-          <factory-entry name="auction" />
+          <factory-entry name="auction" value="ea30ef5e-1bef-43f0-86e4-42e5c6e50d14" />
+          <factory-entry name="auctionXA" value="ea30ef5e-1bef-43f0-86e4-42e5c6e50d14" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>

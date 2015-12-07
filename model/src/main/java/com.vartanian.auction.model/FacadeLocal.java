@@ -17,4 +17,9 @@ public interface FacadeLocal {
     void invokeAsynch();
 
     Future<Person> invokeAsynchWithFuture();
+
+    void createPerson(Person person);
+
+    void updatePerson(Long id, String name, String info);
+
 }
